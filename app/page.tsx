@@ -7,7 +7,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState("");
 
-  const askAI = async (q) => {
+  const askAI = async (q: string) => {
     const text = q || question;
     if (!text) return;
     setLoading(true);
