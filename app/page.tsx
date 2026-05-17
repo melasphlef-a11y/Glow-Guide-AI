@@ -5,7 +5,9 @@ export default function Home() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  const PAYMENT_LINK = "https://buy.stripe.com/test_eVq28r9Kp9Un6fW5I7eZ203";
   const [activeCategory, setActiveCategory] = useState("");
+  const [paid, setPaid] = useState(false);
 
   const askAI = async (q: string) => {
     const text = q || question;
@@ -184,6 +186,73 @@ export default function Home() {
           {topics.map((topic) => {
             const isActive = activeCategory === topic.label;
             return (
+            if (!paid) return (
+  <div style={{
+    minHeight: "100vh",
+    background: "radial-gradient(ellipse at top, #1a1208 0%, #0d0d0d 60%)",
+    fontFamily: "'Georgia', serif",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }}>
+    <div style={{
+      textAlign: "center",
+      padding: "60px 40px",
+      border: "1px solid #2a2a2a",
+      borderRadius: "6px",
+      background: "#111",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.8)",
+      maxWidth: "480px",
+    }}>
+      <div style={{ fontSize: "3rem", marginBottom: "16px" }}>🌸</div>
+      <h1 style={{
+        fontSize: "2rem",
+        letterSpacing: "8px",
+        textTransform: "uppercase",
+        color: "#f0e0c0",
+        marginBottom: "8px",
+        fontWeight: "normal",
+      }}>Glow Guide</h1>
+      <p style={{ color: "#c9a96e", letterSpacing: "3px", fontSize: "0.75rem", marginBottom: "32px" }}>
+        AI BEAUTY ADVISOR
+      </p>
+      <p style={{ color: "#888", lineHeight: "1.8", marginBottom: "32px", fontSize: "0.95rem" }}>
+        Get personalized AI beauty tips for skin, hair, makeup and more — all for just $9.99/month.
+      </p>
+      <a href={PAYMENT_LINK} style={{
+        display: "inline-block",
+        background: "linear-gradient(135deg, #c9a96e, #a07840)",
+        color: "#1a0f00",
+        padding: "16px 40px",
+        borderRadius: "2px",
+        textDecoration: "none",
+        fontSize: "0.8rem",
+        letterSpacing: "3px",
+        textTransform: "uppercase",
+        fontFamily: "Georgia, serif",
+        boxShadow: "0 4px 16px rgba(201,169,110,0.3)",
+      }}>
+        Subscribe Now
+      </a>
+      <p style={{ color: "#333", fontSize: "0.7rem", marginTop: "20px", letterSpacing: "2px" }}>
+        Cancel anytime
+      </p>
+      <button onClick={() => setPaid(true)} style={{
+        display: "block",
+        margin: "16px auto 0",
+        background: "none",
+        border: "none",
+        color: "#444",
+        fontSize: "0.7rem",
+        cursor: "pointer",
+        letterSpacing: "2px",
+        fontFamily: "Georgia, serif",
+      }}>
+        Already subscribed? Click here
+      </button>
+    </div>
+  </div>
+);
               <button
                 key={topic.label}
                 onClick={() => {
